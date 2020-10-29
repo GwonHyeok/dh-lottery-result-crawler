@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "sync:gcs": "ts-node src/util/sync.ts",
     "test": "jest"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
   "homepage": "https://github.com/GwonHyeok/dh-lottery-result-crawler",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/storage": "^5.4.0",
     "@types/accounting": "^0.4.1",
     "@types/axios": "^0.14.0",
     "@types/cheerio": "^0.22.22",
@@ -25,6 +27,7 @@
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "commander": "^6.2.0",
+    "dotenv": "^8.2.0",
     "iconv-lite": "^0.6.2",
     "jest": "^26.6.1",
     "ts-jest": "^26.4.3",

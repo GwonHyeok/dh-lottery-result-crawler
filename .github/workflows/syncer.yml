@@ -1,0 +1,45 @@
+name: Lobi Winner Syncer
+
+on:
+  push:
+    branches:
+      - main
+
+  schedule:
+    - cron: '0 9 * * 6'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test Crawler
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm test
+
+  sync:
+    runs-on: ubuntu-latest
+    name: Sync Lobi Winner
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
+      # Create Google Application Credential
+      - run: echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        env:
+          ANDROID_BASE64_KEYSTORE: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
+
+      - run: npm install
+      - run: npm run sync:gcs
+        env:
+          SYNC_GOOGLE_CLOUD_STORAGE_NAME: { { secrets.SYNC_GOOGLE_CLOUD_STORAGE_NAME } }
+          GOOGLE_APPLICATION_CREDENTIALS: { { secrets.GOOGLE_APPLICATION_CREDENTIALS } }
+
+
