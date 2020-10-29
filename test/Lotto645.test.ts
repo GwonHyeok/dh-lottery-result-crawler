@@ -1,5 +1,7 @@
 import Lotto645 from "../src/game/Lotto645";
 
+jest.setTimeout(60 * 1000)
+
 test('로또 6/45 결과 적합성 테스트', async () => {
     const lotto645 = new Lotto645()
 
