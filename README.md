@@ -1,5 +1,7 @@
 # 동행복권 결과 크롤러
 
+[![Lobi Winner Syncer](https://github.com/GwonHyeok/dh-lottery-result-crawler/actions/workflows/syncer.yml/badge.svg)](https://github.com/GwonHyeok/dh-lottery-result-crawler/actions/workflows/syncer.yml)
+
 ### CLI
 
 #### 600 회차의 결과를 result.json 파일로 저장
